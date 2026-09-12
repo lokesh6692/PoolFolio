@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: poolfolio-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: poolfolio_db
+      POSTGRES_USER: poolfolio
+      POSTGRES_PASSWORD: poolfolio_local_pw
+    ports:
+      - "5433:5432"
+    volumes:
+      - poolfolio_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U poolfolio -d poolfolio_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7
+    container_name: poolfolio-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - poolfolio_redis_data:/data
+
+volumes:
+  poolfolio_pg_data:
+  poolfolio_redis_data:
+
+name: poolfolio

@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://your-neon-host.neon.tech/poolfolio_db?sslmode=require&channel_binding=require
+    username: your_neon_username
+    password: your_neon_password_here
