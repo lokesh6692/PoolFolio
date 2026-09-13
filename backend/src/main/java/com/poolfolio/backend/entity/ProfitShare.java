@@ -34,6 +34,8 @@ public class ProfitShare {
     @ToString.Exclude
     private Member member;
 
+    // Phase 5 Batch 2: reinterpreted as member's unit-share of total group units
+    // outstanding as of the snapshot (unitsHeld / totalUnits), expressed 0-100.
     @Column(name = "ownership_percentage", nullable = false, precision = 9, scale = 6)
     private BigDecimal ownershipPercentage;
 
@@ -45,6 +47,30 @@ public class ProfitShare {
 
     @Column(name = "profit_loss", nullable = false, precision = 15, scale = 2)
     private BigDecimal profitLoss;
+
+    @Column(name = "units_held", nullable = false, precision = 18, scale = 6)
+    @Builder.Default
+    private BigDecimal unitsHeld = BigDecimal.ZERO;
+
+    @Column(name = "total_contributed", nullable = false, precision = 15, scale = 2)
+    @Builder.Default
+    private BigDecimal totalContributed = BigDecimal.ZERO;
+
+    @Column(name = "total_invested", nullable = false, precision = 15, scale = 2)
+    @Builder.Default
+    private BigDecimal totalInvested = BigDecimal.ZERO;
+
+    @Column(name = "available_cash_without_pl", nullable = false, precision = 15, scale = 2)
+    @Builder.Default
+    private BigDecimal availableCashWithoutPl = BigDecimal.ZERO;
+
+    @Column(name = "realized_profit_loss", nullable = false, precision = 15, scale = 2)
+    @Builder.Default
+    private BigDecimal realizedProfitLoss = BigDecimal.ZERO;
+
+    @Column(name = "available_cash_with_pl", nullable = false, precision = 15, scale = 2)
+    @Builder.Default
+    private BigDecimal availableCashWithPl = BigDecimal.ZERO;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @Builder.Default

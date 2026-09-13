@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface TradeRepository extends JpaRepository<Trade, Long> {
     List<Trade> findByGroupIdOrderByTradedAtDesc(Long groupId);
+    List<Trade> findByGroupIdOrderByTradedAtAsc(Long groupId);
     List<Trade> findByGroupIdAndSymbolOrderByTradedAtAsc(Long groupId, String symbol);
 }

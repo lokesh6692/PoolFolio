@@ -20,10 +20,12 @@ public class ContributionService {
 
     private final ContributionRepository contributionRepository;
     private final MemberRepository memberRepository;
+    private final NavUnitService navUnitService;
 
-    public ContributionService(ContributionRepository contributionRepository, MemberRepository memberRepository) {
+    public ContributionService(ContributionRepository contributionRepository, MemberRepository memberRepository, NavUnitService navUnitService) {
         this.contributionRepository = contributionRepository;
         this.memberRepository = memberRepository;
+        this.navUnitService = navUnitService;
     }
 
     @Transactional
@@ -41,6 +43,7 @@ public class ContributionService {
                 .build();
 
         Contribution saved = contributionRepository.save(contribution);
+        navUnitService.recordContributionUnits(saved);
         return mapToResponse(saved);
     }
 
@@ -58,12 +61,7 @@ public class ContributionService {
                 principal.memberId(), ContributionType.DEPOSIT);
         BigDecimal withdrawals = contributionRepository.sumAmountByMemberIdAndType(
                 principal.memberId(), ContributionType.WITHDRAWAL);
-
-        return new ContributionTotalResponse(
-                deposits,
-                withdrawals,
-                deposits.subtract(withdrawals)
-        );
+        return new ContributionTotalResponse(deposits, withdrawals, deposits.subtract(withdrawals));
     }
 
     @Transactional(readOnly = true)
@@ -72,12 +70,7 @@ public class ContributionService {
                 principal.groupId(), ContributionType.DEPOSIT);
         BigDecimal withdrawals = contributionRepository.sumAmountByGroupIdAndType(
                 principal.groupId(), ContributionType.WITHDRAWAL);
-
-        return new ContributionTotalResponse(
-                deposits,
-                withdrawals,
-                deposits.subtract(withdrawals)
-        );
+        return new ContributionTotalResponse(deposits, withdrawals, deposits.subtract(withdrawals));
     }
 
     private ContributionResponse mapToResponse(Contribution c) {
