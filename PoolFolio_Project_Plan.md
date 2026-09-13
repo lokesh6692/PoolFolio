@@ -240,12 +240,12 @@ Copy-paste this into a new Claude session anytime to continue:
 | 0 — Setup | ✅ Complete | |
 | 1 — DB Schema | ✅ Complete | + V10 additive migration: `ipo_holdings` as separate entity, applied to local + Neon; table count verified on Neon (8 domain tables, matches migration history) |
 | 2 — Backend: Auth API | ✅ Complete | Unverified: "generated security password" warning on startup — confirm `permitAll` routes unaffected before Phase 3 |
-| 3 — Backend: Contributions API | 🔶 In progress (starting now) | Design locked per §3.1 |
-| 4 — Backend: Trades/Holdings API | Not started | Scope includes new `IpoHolding` CRUD |
-| 5 — Backend: Ratio/P&L Engine | Not started | Scope grew — realized P&L + cash-with/without-P&L, per §3.5 |
-| 6 — Backend: Live Prices | Not started | Backend feature-complete after this |
-| 7 — Frontend: Auth & Shell | Not started | |
-| 8 — Frontend: Contributions/Trades | Not started | |
-| 9 — Frontend: Dashboard | Not started | |
+| 3 — Backend: Contributions API | ✅ Complete | Running totals per-member and whole group |
+| 4 — Backend: Trades/Holdings API | ✅ Complete | Trades, full-replay holdings recomputation, IPO holdings CRUD, portfolio summary |
+| 5 — Backend: Ratio/P&L Engine | ✅ Complete | Valuation snapshots, unit-share ProfitShare reporting, realized P&L allocation |
+| 6 — Backend: Live Prices | ⏳ Pending | External Finnhub API + Redis cache (deferred) |
+| 7 — Frontend: Auth & Shell | ✅ Complete | Next.js 15, dark fintech UI, JWT auth, 1-click invite code copy, responsive navbar |
+| 8 — Frontend: Contributions/Trades | ✅ Complete | Contributions ledger, BUY/SELL trade order book, stock holdings & IPO holdings tabs |
+| 9 — Frontend: Dashboard | ✅ Complete | Portfolio hero stats, Recharts allocation donut, member unit shares chart, valuations table |
 | 10 — Testing/CI-CD | Not started | |
 | 11 — Deploy/Portfolio | Not started | |
