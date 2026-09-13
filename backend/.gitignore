@@ -38,4 +38,4 @@ out/
 
 ### Poolfolio secrets ###
 src/main/resources/application-neon.yml
-src/main/resources/application.yml
+src/main/resources/application-*.local.yml
